@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Award List{% endblock %}
+
+{% block content %}
+<h1>Awards for "{{ tender.title }}"</h1>
+<a href="{% url 'award_create' tender.pk %}" class="btn btn-primary mb-3">Add New Award</a>
+<ul class="list-group">
+    {% for award in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'award' award.pk %}">Award to {{ award.bidder.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

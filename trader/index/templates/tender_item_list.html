@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Tender Item List{% endblock %}
+
+{% block content %}
+<h1>Tender Items for "{{ tender.title }}"</h1>
+<a href="{% url 'tender_item_create' tender.pk %}" class="btn btn-primary mb-3">Add New Item</a>
+<ul class="list-group">
+    {% for item in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'tender_item' item.pk %}">{{ item.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

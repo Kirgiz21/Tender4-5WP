@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Award Detail{% endblock %}
+
+{% block content %}
+<h1>Award to {{ object.bidder.name }}</h1>
+<p>Price: {{ object.price }}</p>
+<p>Terms: {{ object.terms }}</p>
+
+<a href="{% url 'award_update' object.pk %}" class="btn btn-secondary">Edit</a>
+<a href="{% url 'award_delete' object.pk %}" class="btn btn-danger">Delete</a>
+{% endblock %}

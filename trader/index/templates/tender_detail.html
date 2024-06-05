@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Tender Detail{% endblock %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>{{ object.description }}</p>
+<p>Start Date: {{ object.start_date }}</p>
+<p>End Date: {{ object.end_date }}</p>
+
+<a href="{% url 'tender_update' object.pk %}" class="btn btn-secondary">Edit</a>
+<a href="{% url 'tender_delete' object.pk %}" class="btn btn-danger">Delete</a>
+
+<h2>Tender Items</h2>
+
+<a href="{% url 'tender_item_create' object.pk %}" class="btn btn-primary mb-3">Add Item</a>
+
+<ul class="list-group">
+    {% for item in object.items.all %}
+        <li class="list-group-item">
+            <a href="{% url 'tender_item' item.pk %}">{{ item.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Bids</h2>
+<a href="{% url 'bid_create' object.pk %}" class="btn btn-primary mb-3">Add Bid</a>
+<ul class="list-group">
+    {% for bid in object.bids.all %}
+    <li class="list-group-item">
+        <a href="{% url 'bid' bid.pk %}">Bid by {{ bid.bidder.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Awards</h2>
+<a href="{% url 'award_create' object.pk %}" class="btn btn-primary mb-3">Add Award</a>
+<ul class="list-group">
+    {% for award in object.awards.all %}
+    <li class="list-group-item">
+        <a href="{% url 'award' award.pk %}">Award to {{ award.bidder.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

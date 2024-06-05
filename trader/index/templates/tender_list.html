@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Tender List{% endblock %}
+
+{% block content %}
+    <h1>Tender List</h1>
+    <a href="{% url 'tender_create' %}" class="btn btn-primary mb-3">Create New Tender</a>
+    {% if object_list %}
+        <ul class="list-group">
+            {% for tender in object_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'tender' tender.pk %}">{{ tender.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h1>Nothing</h1>
+    {% endif %}
+{% endblock %}

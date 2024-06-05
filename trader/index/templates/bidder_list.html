@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Bidder List{% endblock %}
+
+{% block content %}
+<h1>Bidder List</h1>
+<a href="{% url 'bidder_create' %}" class="btn btn-primary mb-3">Create New Bidder</a>
+<ul class="list-group">
+    {% for bidder in object_list %}
+    <li class="list-group-item">
+        <a href="{% url 'bidder' bidder.pk %}">{{ bidder.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
